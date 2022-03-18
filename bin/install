@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+if [ "${#BASH_SOURCE[@]}" -gt 0 ];
+then
+    current_script_path="$(realpath "${BASH_SOURCE[0]}")"
+else
+    current_script_path="$(realpath "$0")"
+fi
+plugin_dir=$(realpath "$(dirname "$(dirname "$current_script_path")")")
+
+# shellcheck source=lib/vars.bash
+source "$plugin_dir/lib/vars.bash"
+# shellcheck source=lib/utils.bash
+source "$plugin_dir/lib/utils.bash"
+
+
+if [ "$ASDF_INSTALL_TYPE" != "version" ];
+then
+    fail "Support 'version' install_type only."
+fi
+
+
+# Pre install
+case $(get_os_distro) in
+    ubuntu)
+        case $(get_os_code) in
+            focal)
+                source "$plugin_dir/lib/distro/ubuntu/focal.bash"
+                ubuntu_focal_pre "$RESTY_ADD_PACKAGE_BUILDDEPS" "$RESTY_ADD_PACKAGE_RUNDEPS"
+                ;;
+        esac
+        ;;
+
+    *)
+        fail "Unsupported os distro: $(get_os_distro)"
+        ;;
+esac
+
+
+(
+  # install_openssl   "$ASDF_DOWNLOAD_PATH" "$ASDF_INSTALL_PATH" "$ASDF_CONCURRENCY"
+  # install_pcre      "$ASDF_DOWNLOAD_PATH" "$ASDF_INSTALL_PATH" "$ASDF_CONCURRENCY"
+    install_openresty "$ASDF_DOWNLOAD_PATH" "$ASDF_INSTALL_PATH" "$ASDF_CONCURRENCY" "$ASDF_INSTALL_VERSION"
+    install_luarocks  "$ASDF_DOWNLOAD_PATH" "$ASDF_INSTALL_PATH" "$ASDF_CONCURRENCY"
+) || (rm -rf "$ASDF_INSTALL_PATH"; exit 1)

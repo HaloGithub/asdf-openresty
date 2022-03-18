@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+if [ "${#BASH_SOURCE[@]}" -gt 0 ];
+then
+    current_script_path="$(realpath "${BASH_SOURCE[0]}")"
+else
+    current_script_path="$(realpath "$0")"
+fi
+plugin_dir=$(realpath "$(dirname "$(dirname "$current_script_path")")")
+
+# shellcheck source=lib/utils.bash
+source "$plugin_dir/lib/utils.bash"
+
+
+list_github_tags | sort_versions | xargs echo
