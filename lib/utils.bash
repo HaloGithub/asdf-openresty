@@ -2,23 +2,22 @@
 
 set -euo pipefail
 
+
 if [ "${#BASH_SOURCE[@]}" -gt 0 ];
 then
-    current_script_path="$(realpath "${BASH_SOURCE[0]}")"
+    current_script_path="${BASH_SOURCE[0]}"
 else
-    current_script_path="$(realpath "$0")"
+    current_script_path="$0"
 fi
-plugin_dir=$(realpath "$(dirname "$(dirname "$current_script_path")")")
+current_script_dir="$(dirname "$current_script_path")"
+# shellcheck source=bin/_os.bash
+source "$current_script_dir/../bin/_os.bash"
+realpath="$(realpath_cmd)"
+plugin_dir=$("$realpath" "$(dirname "$(dirname "$current_script_path")")")
 
 
 GH_REPO="https://github.com/openresty/openresty"
 TOOL_NAME="openresty"
-
-
-fail() {
-    echo -e "asdf-$TOOL_NAME: $*"
-    exit 1
-}
 
 
 get_os_distro() {

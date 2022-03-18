@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034
 
-set -eu -o pipefail
+set -euo pipefail
 
 RESTY_VERSION="1.19.9.1"
 RESTY_LUAROCKS_VERSION="3.8.0"
