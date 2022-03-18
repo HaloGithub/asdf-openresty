@@ -10,10 +10,10 @@ else
     current_script_path="$0"
 fi
 current_script_dir="$(dirname "$current_script_path")"
-# shellcheck source=bin/_os.bash
-source "$current_script_dir/../bin/_os.bash"
-realpath="$(realpath_cmd)"
-plugin_dir=$("$realpath" "$(dirname "$(dirname "$current_script_path")")")
+# # shellcheck source=bin/_os.bash
+# source "$current_script_dir/_os.bash"
+# realpath="$(realpath_cmd)"
+plugin_dir=$(realpath "$(dirname "$(dirname "$current_script_path")")")
 
 
 GH_REPO="https://github.com/openresty/openresty"
