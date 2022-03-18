@@ -13,21 +13,11 @@ current_script_dir="$(dirname "$current_script_path")"
 # # shellcheck source=bin/_os.bash
 source "$current_script_dir/../bin/_os.bash"
 # realpath="$(realpath_cmd)"
-plugin_dir=$(realpath "$(dirname "$(dirname "$current_script_path")")")
+plugin_dir=$(realpath "$(dirname "$current_script_dir")")
 
 
 GH_REPO="https://github.com/openresty/openresty"
 TOOL_NAME="openresty"
-
-
-get_os_distro() {
-    lsb_release -i | sed 's/Distributor ID:\s*//' | tr '[:upper:]' '[:lower:]'
-}
-
-
-get_os_code() {
-    lsb_release -c | sed 's/Codename:\s*//'
-}
 
 
 sort_versions() {

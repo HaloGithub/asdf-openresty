@@ -13,7 +13,7 @@ current_script_dir="$(dirname "$current_script_path")"
 # # shellcheck source=bin/_os.bash
 source "$current_script_dir/_os.bash"
 # realpath="$(realpath_cmd)"
-plugin_dir=$(realpath "$(dirname "$(dirname "$current_script_path")")")
+plugin_dir=$(realpath "$(dirname "$current_script_dir")")
 
 
 # shellcheck source=lib/vars.bash
@@ -26,33 +26,6 @@ if [ "$ASDF_INSTALL_TYPE" != "version" ];
 then
     fail "Support 'version' install_type only."
 fi
-
-
-# Pre install
-case "$uname" in
-    (*Linux*)
-        case $(get_os_distro) in
-            ubuntu)
-                case $(get_os_code) in
-                    focal)
-                        source "$plugin_dir/lib/distro/ubuntu/focal.bash"
-                        ubuntu_focal_pre "$RESTY_ADD_PACKAGE_BUILDDEPS" "$RESTY_ADD_PACKAGE_RUNDEPS"
-                        ;;
-                esac
-                ;;
-
-            *)
-                fail "Unsupported os distro: $(get_os_distro)"
-                ;;
-        esac
-        ;;
-    (*Darwin*)
-        ;;
-    (*)
-        fail "Unsupported platform: $uname"
-        exit 2
-        ;;
-esac;
 
 
 (
