@@ -53,6 +53,17 @@ case "$uname" in
         ;;
     (*Darwin*)
         brew install coreutils
+
+        plugin_dir=$(realpath "$(dirname "$current_script_dir")")
+
+        # shellcheck source=lib/vars.bash
+        source "$plugin_dir/lib/vars.bash"
+
+        # Disable because GitHub Action showing errors:
+        #   no supported file AIO was found
+        RESTY_CONFIG_OPTIONS_MORE="\
+            --without-file-aio \
+            "
         ;;
     (*)
         fail "Unsupported platform: $uname"
