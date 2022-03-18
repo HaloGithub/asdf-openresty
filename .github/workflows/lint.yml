@@ -12,7 +12,7 @@ jobs:
     container:
       image: koalaman/shellcheck
       volumes:
-        - $(pwd):/mnt
+        - /home/runner/work:/mnt
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
