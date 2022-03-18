@@ -25,7 +25,7 @@ jobs:
           - macos-latest
     runs-on: ${{ matrix.os }}
     steps:
-      # ~/.asdf/bin/asdf plugin-test openresty https://github.com/HaloGithub/asdf-openresty --asdf-tool-version latest --asdf-plugin-gitref 698d27e81d4db30287e90d3c9358029d4bc277e0 openresty -v
+      # ./asdf/bin/asdf plugin-test openresty ./asdf-openresty/ --asdf-tool-version latest openresty -v
       - uses: actions/checkout@v3
         with:
           repository: asdf-vm/asdf
