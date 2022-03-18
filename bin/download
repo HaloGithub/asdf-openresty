@@ -11,7 +11,7 @@ else
 fi
 current_script_dir="$(dirname "$current_script_path")"
 # # shellcheck source=bin/_os.bash
-# source "$current_script_dir/_os.bash"
+source "$current_script_dir/_os.bash"
 # realpath="$(realpath_cmd)"
 plugin_dir=$(realpath "$(dirname "$(dirname "$current_script_path")")")
 
