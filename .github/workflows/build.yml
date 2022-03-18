@@ -25,7 +25,13 @@ jobs:
           - macos-latest
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      # ~/.asdf/bin/asdf plugin-test openresty https://github.com/HaloGithub/asdf-openresty --asdf-tool-version latest --asdf-plugin-gitref 698d27e81d4db30287e90d3c9358029d4bc277e0 openresty -v
+      - uses: actions/checkout@v3
+        with:
+          repository: https://github.com/asdf-vm/asdf.git
+          path: ~/.asdf
+
+      - uses: actions/checkout@v3
 
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
