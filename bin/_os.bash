@@ -7,15 +7,15 @@ fail() {
 }
 
 
-uname=$(uname);
+uname=$(uname)
 case "$uname" in
-(*Linux*)
-    ;;
-(*Darwin*)
-    brew install coreutils
-    ;;
-(*)
-    fail "Unsupported platform: $uname"
-    exit 2
-    ;;
+    (*Linux*)
+        ;;
+    (*Darwin*)
+        brew install coreutils
+        ;;
+    (*)
+        fail "Unsupported platform: $uname"
+        exit 2
+        ;;
 esac;

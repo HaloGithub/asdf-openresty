@@ -29,20 +29,30 @@ fi
 
 
 # Pre install
-case $(get_os_distro) in
-    ubuntu)
-        case $(get_os_code) in
-            focal)
-                source "$plugin_dir/lib/distro/ubuntu/focal.bash"
-                ubuntu_focal_pre "$RESTY_ADD_PACKAGE_BUILDDEPS" "$RESTY_ADD_PACKAGE_RUNDEPS"
+case "$uname" in
+    (*Linux*)
+        case $(get_os_distro) in
+            ubuntu)
+                case $(get_os_code) in
+                    focal)
+                        source "$plugin_dir/lib/distro/ubuntu/focal.bash"
+                        ubuntu_focal_pre "$RESTY_ADD_PACKAGE_BUILDDEPS" "$RESTY_ADD_PACKAGE_RUNDEPS"
+                        ;;
+                esac
+                ;;
+
+            *)
+                fail "Unsupported os distro: $(get_os_distro)"
                 ;;
         esac
         ;;
-
-    *)
-        fail "Unsupported os distro: $(get_os_distro)"
+    (*Darwin*)
         ;;
-esac
+    (*)
+        fail "Unsupported platform: $uname"
+        exit 2
+        ;;
+esac;
 
 
 (
