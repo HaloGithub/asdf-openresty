@@ -59,11 +59,8 @@ case "$uname" in
         # shellcheck source=lib/vars.bash
         source "$plugin_dir/lib/vars.bash"
 
-        # Disable because GitHub Action showing errors:
-        #   no supported file AIO was found
-        RESTY_CONFIG_OPTIONS_MORE="\
-            --without-file-aio \
-            "
+        # GitHub Action current blocks:
+        #   - If enable --with-file-aio: no supported file AIO was found
         ;;
     (*)
         fail "Unsupported platform: $uname"
