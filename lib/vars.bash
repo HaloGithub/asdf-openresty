@@ -13,6 +13,7 @@ RESTY_PCRE_SHA256="aecafd4af3bd0f3935721af77b889d9024b2e01d96b58471bd91a3063fb47
 RESTY_J="1"
 RESTY_CONFIG_OPTIONS="\
     --with-compat \
+    --with-file-aio \
     --with-http_addition_module \
     --with-http_auth_request_module \
     --with-http_dav_module \
