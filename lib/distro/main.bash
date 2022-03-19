@@ -31,17 +31,15 @@ get_os_code() {
 uname=$(uname)
 case "$uname" in
     (*Linux*)
-        current_dir=$(realpath "$(dirname "$current_script_dir")")
-
         # shellcheck source=lib/vars.bash
-        source "$current_dir/../vars.bash"
+        source "$current_script_dir/../vars.bash"
 
         case $(get_os_distro) in
             ubuntu)
                 case $(get_os_code) in
                     focal)
                         # shellcheck source=lib/distro/ubuntu/focal.bash
-                        source "$current_dir/ubuntu/focal.bash"
+                        source "$current_script_dir/ubuntu/focal.bash"
                         ubuntu_focal_pre
                         ;;
                 esac
@@ -55,14 +53,11 @@ case "$uname" in
     (*Darwin*)
         brew install coreutils
 
-        # realpath only works after install coreutils package.
-        current_dir=$(realpath "$(dirname "$current_script_dir")")
-
         # shellcheck source=lib/vars.bash
-        source "$current_dir/../vars.bash"
+        source "$current_script_dir/../vars.bash"
 
         # shellcheck source=lib/distro/darwin/default.bash
-        source "$current_dir/darwin/default.bash"
+        source "$current_script_dir/darwin/default.bash"
         darwin_default_pre
         ;;
     (*)
