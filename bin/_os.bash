@@ -13,7 +13,7 @@ current_script_dir="$(dirname "$current_script_path")"
 
 
 fail() {
-    echo -e "asdf-$TOOL_NAME: $*"
+    echo -e "asdf-openresty: $*"
     exit 1
 }
 
