@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-darwin_default_pre() {
+os_init() {
     # Remove below options for MacOS:
     #   1. --with-file-aio: Due to "no supported file AIO was found" error
     export RESTY_CONFIG_OPTIONS="\

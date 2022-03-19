@@ -10,7 +10,7 @@ sort_versions() {
 
 
 list_github_tags() {
-    git ls-remote --tags --refs "https://github.com/openresty/openresty" |
+    git ls-remote --tags --refs https://github.com/openresty/openresty |
         grep -o 'refs/tags/.*' | cut -d/ -f3- |
         sed 's/^v//' # NOTE: You might want to adapt this sed to remove non-version strings from tags
 }

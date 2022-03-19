@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-ubuntu_focal_pre() {
+os_init() {
     # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L85-L102
     DEBIAN_FRONTEND=noninteractive sudo apt-get update \
     && DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends \

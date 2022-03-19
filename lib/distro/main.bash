@@ -5,11 +5,11 @@ set -euo pipefail
 
 if [ "${#BASH_SOURCE[@]}" -gt 0 ];
 then
-    current_script_path="${BASH_SOURCE[0]}"
+    main_script_path="${BASH_SOURCE[0]}"
 else
-    current_script_path="$0"
+    main_script_path="$0"
 fi
-current_script_dir="$(dirname "$current_script_path")"
+main_script_dir="$(dirname "$main_script_path")"
 
 
 fail() {
@@ -32,19 +32,13 @@ uname=$(uname)
 case "$uname" in
     (*Linux*)
         # shellcheck source=lib/vars.bash
-        source "$current_script_dir/../vars.bash"
+        source "$main_script_dir/../vars.bash"
 
         case $(get_os_distro) in
             ubuntu)
-                case $(get_os_code) in
-                    focal)
-                        # shellcheck source=lib/distro/ubuntu/focal.bash
-                        source "$current_script_dir/ubuntu/focal.bash"
-                        ubuntu_focal_pre
-                        ;;
-                esac
+                # shellcheck source=lib/distro/ubuntu/default.bash
+                source "$main_script_dir/ubuntu/default.bash"
                 ;;
-
             *)
                 fail "Unsupported os distro: $(get_os_distro)"
                 ;;
@@ -54,11 +48,10 @@ case "$uname" in
         brew install coreutils
 
         # shellcheck source=lib/vars.bash
-        source "$current_script_dir/../vars.bash"
+        source "$main_script_dir/../vars.bash"
 
         # shellcheck source=lib/distro/darwin/default.bash
-        source "$current_script_dir/darwin/default.bash"
-        darwin_default_pre
+        source "$main_script_dir/darwin/default.bash"
         ;;
     (*)
         fail "Unsupported platform: $uname"

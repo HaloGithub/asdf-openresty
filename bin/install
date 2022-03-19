@@ -12,6 +12,7 @@ fi
 current_script_dir="$(dirname "$current_script_path")"
 # shellcheck source=lib/distro/main.bash
 source "$current_script_dir/../lib/distro/main.bash"
+os_init
 
 plugin_dir=$(realpath "$(dirname "$current_script_dir")")
 
