@@ -3,8 +3,7 @@
 set -euo pipefail
 
 
-if [ "${#BASH_SOURCE[@]}" -gt 0 ];
-then
+if [ "${#BASH_SOURCE[@]}" -gt 0 ]; then
     main_script_path="${BASH_SOURCE[0]}"
 else
     main_script_path="$0"

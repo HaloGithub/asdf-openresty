@@ -3,8 +3,7 @@
 set -euo pipefail
 
 
-if [ "${#BASH_SOURCE[@]}" -gt 0 ];
-then
+if [ "${#BASH_SOURCE[@]}" -gt 0 ]; then
     current_script_path="${BASH_SOURCE[0]}"
 else
     current_script_path="$0"
@@ -21,8 +20,7 @@ plugin_dir=$(realpath "$(dirname "$current_script_dir")")
 source "$plugin_dir/lib/utils.bash"
 
 
-if [ "$ASDF_INSTALL_TYPE" != "version" ];
-then
+if [ "$ASDF_INSTALL_TYPE" != "version" ]; then
     fail "Support 'version' install_type only."
 fi
 

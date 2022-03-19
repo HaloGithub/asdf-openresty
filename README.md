@@ -10,5 +10,5 @@ asdf plugin-add openresty https://github.com/HaloGithub/asdf-openresty.git
 ```
 
 ```shell
-docker run --rm -v $(pwd):/mnt koalaman/shellcheck --external-sources --shell bash bin/* lib/**/*.bash
+docker run --rm -v $(pwd):/mnt koalaman/shellcheck --format=gcc --external-sources bin/* lib/**/*.bash
 ```
