@@ -9,6 +9,8 @@ asdf-openresty
 asdf plugin-add openresty https://github.com/HaloGithub/asdf-openresty.git
 ```
 
+## Linting
+
 ```shell
 docker run --rm -v $(pwd):/mnt koalaman/shellcheck --format=gcc --external-sources bin/* lib/**/*.bash
 ```
