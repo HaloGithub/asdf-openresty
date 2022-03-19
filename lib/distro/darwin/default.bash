@@ -12,6 +12,7 @@ darwin_default_pre() {
         --with-http_auth_request_module \
         --with-http_dav_module \
         --with-http_flv_module \
+        --with-http_geoip_module=dynamic \
         --with-http_gunzip_module \
         --with-http_gzip_static_module \
         --with-http_image_filter_module=dynamic \
