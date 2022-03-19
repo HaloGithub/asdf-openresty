@@ -5,7 +5,6 @@ set -euo pipefail
 darwin_default_pre() {
     # Remove below options for MacOS:
     #   1. --with-file-aio: Due to "no supported file AIO was found" error
-    #   2. --with-http_geoip_module=dynamic: Due to "the GeoIP module requires the GeoIP library" error
     RESTY_CONFIG_OPTIONS="\
         --with-compat \
         --with-http_addition_module \
