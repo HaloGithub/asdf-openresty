@@ -25,6 +25,7 @@ jobs:
           - macos-latest
     runs-on: ${{ matrix.os }}
     steps:
+    # # Uncomment below steps for debugging in build machine:
     # - uses: actions/checkout@v3
     #   with:
     #     repository: asdf-vm/asdf
@@ -55,3 +56,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
+    needs:
+      - shellcheck
+      - plugin_test

@@ -14,9 +14,6 @@ current_script_dir="$(dirname "$current_script_path")"
 source "$current_script_dir/../bin/_os.bash"
 
 
-GH_REPO="https://github.com/openresty/openresty"
-
-
 sort_versions() {
     sed 'h; s/[+-]/./g; s/.p\([[:digit:]]\)/.z\1/; s/$/.z/; G; s/\n/ /' |
         LC_ALL=C sort -t. -k 1,1 -k 2,2n -k 3,3n -k 4,4n -k 5,5n | awk '{print $2}'
@@ -24,7 +21,7 @@ sort_versions() {
 
 
 list_github_tags() {
-    git ls-remote --tags --refs "$GH_REPO" |
+    git ls-remote --tags --refs "https://github.com/openresty/openresty" |
         grep -o 'refs/tags/.*' | cut -d/ -f3- |
         sed 's/^v//' # NOTE: You might want to adapt this sed to remove non-version strings from tags
 }
