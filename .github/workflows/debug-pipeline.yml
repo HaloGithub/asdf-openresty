@@ -46,12 +46,12 @@ jobs:
         with:
           command: openresty -v
 
-    git_tag:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Bump version and push tag
-          id: tag_version
-          uses: mathieudutour/github-tag-action@v6.0
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            dry_run: true
+  git_tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: true
