@@ -37,3 +37,11 @@ os_init() {
         "
     brew install libgeoip
 }
+
+
+os_post_make() {
+    # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L161
+    if [ -n "$RESTY_EVAL_POST_MAKE" ]; then
+        eval "$RESTY_EVAL_POST_MAKE";
+    fi
+}

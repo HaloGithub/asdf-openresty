@@ -2,6 +2,7 @@
 
 set -euo pipefail
 
+# Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L12-L65
 export RESTY_VERSION="1.19.9.1"
 export RESTY_LUAROCKS_VERSION="3.8.0"
 export RESTY_OPENSSL_VERSION="1.1.1n"

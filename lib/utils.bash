@@ -26,6 +26,7 @@ list_all_versions() {
 download_openssl() {
     download_path=$1
     cd "$download_path"
+    # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L105-L106
     curl -fSL "$RESTY_OPENSSL_URL_BASE/openssl-$RESTY_OPENSSL_VERSION.tar.gz" -o "openssl-$RESTY_OPENSSL_VERSION.tar.gz" \
     && tar xzf "openssl-$RESTY_OPENSSL_VERSION.tar.gz"
 }
@@ -35,6 +36,7 @@ install_openssl() {
     download_path=$1
     install_path=$2
     make_j=$3
+    # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L107-L124
     cd "$download_path/openssl-$RESTY_OPENSSL_VERSION"
     if [ "$(echo "$RESTY_OPENSSL_VERSION" | cut -c 1-5)" = "1.1.1" ] ; then \
         echo 'patching OpenSSL 1.1.1 for OpenResty' \
@@ -58,8 +60,9 @@ install_openssl() {
 
 download_pcre() {
     download_path=$1
-    cd "$download_path"
-    curl -fSL "https://downloads.sourceforge.net/project/pcre/pcre/$RESTY_PCRE_VERSION/pcre-$RESTY_PCRE_VERSION.tar.gz" -o "pcre-$RESTY_PCRE_VERSION.tar.gz" \
+    # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L125-L128
+    cd "$download_path" \
+    && curl -fSL "https://downloads.sourceforge.net/project/pcre/pcre/$RESTY_PCRE_VERSION/pcre-$RESTY_PCRE_VERSION.tar.gz" -o "pcre-$RESTY_PCRE_VERSION.tar.gz" \
     && echo "$RESTY_PCRE_SHA256  pcre-$RESTY_PCRE_VERSION.tar.gz" | shasum -a 256 --check \
     && tar xzf "pcre-$RESTY_PCRE_VERSION.tar.gz"
 }
@@ -69,6 +72,7 @@ install_pcre() {
     download_path=$1
     install_path=$2
     make_j=$3
+    # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L129-L137
     cd "$download_path/pcre-$RESTY_PCRE_VERSION" \
     && ./configure \
         --prefix="$install_path/pcre" \
@@ -84,6 +88,7 @@ install_pcre() {
 download_openresty() {
     download_path=$1
     install_version=$2
+    # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L138-L140
     cd "$download_path" \
     && curl -fSL "https://openresty.org/download/openresty-$install_version.tar.gz" -o "openresty-$install_version.tar.gz" \
     && tar xzf "openresty-$install_version.tar.gz"
@@ -95,6 +100,7 @@ install_openresty() {
     install_path=$2
     make_j=$3
     install_version=$4
+    # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L141-L144
     cd "$download_path/openresty-$install_version" \
     && eval ./configure -j"$make_j" \
         "$_RESTY_CONFIG_DEPS" \
@@ -111,6 +117,7 @@ install_openresty() {
 
 download_luarocks() {
     download_path=$1
+    # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L150-L151
     cd "$download_path" \
     && curl -fSL "https://luarocks.github.io/luarocks/releases/luarocks-$RESTY_LUAROCKS_VERSION.tar.gz" -o "luarocks-$RESTY_LUAROCKS_VERSION.tar.gz" \
     && tar xzf "luarocks-$RESTY_LUAROCKS_VERSION.tar.gz"
@@ -121,6 +128,7 @@ install_luarocks() {
     download_path=$1
     install_path=$2
     make_j=$3
+    # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L152-L159
     cd "$download_path/luarocks-$RESTY_LUAROCKS_VERSION" \
     && ./configure \
         --prefix="$install_path/luarocks" \
