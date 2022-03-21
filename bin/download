@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+
+if [ "${#BASH_SOURCE[@]}" -gt 0 ]; then
+    current_script_path="${BASH_SOURCE[0]}"
+else
+    current_script_path="$0"
+fi
+current_script_dir="$(dirname "$current_script_path")"
+# shellcheck source=lib/distro/main.bash
+source "$current_script_dir/../lib/distro/main.bash"
+
+plugin_dir=$(realpath "$(dirname "$current_script_dir")")
+
+
+# shellcheck source=lib/utils.bash
+source "$plugin_dir/lib/utils.bash"
+
+
+(
+    mkdir -p "$ASDF_DOWNLOAD_PATH"
+    download_openssl   "$ASDF_DOWNLOAD_PATH"
+    download_pcre      "$ASDF_DOWNLOAD_PATH"
+    download_openresty "$ASDF_DOWNLOAD_PATH" "$ASDF_INSTALL_VERSION"
+    download_luarocks  "$ASDF_DOWNLOAD_PATH"
+) || (rm -rf "$ASDF_DOWNLOAD_PATH"; exit 1)
