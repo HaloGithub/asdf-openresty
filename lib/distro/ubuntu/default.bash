@@ -28,12 +28,12 @@ os_init() {
 os_post_make() {
     # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L161
     if [ -n "$RESTY_EVAL_POST_MAKE" ]; then
-        eval "$RESTY_EVAL_POST_MAKE";
+        eval "$RESTY_EVAL_POST_MAKE"
     fi
 
     # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L163
     if [ -n "$RESTY_ADD_PACKAGE_BUILDDEPS" ]; then
-        DEBIAN_FRONTEND=noninteractive sudo apt-get remove -y --purge "$RESTY_ADD_PACKAGE_BUILDDEPS" ;
+        DEBIAN_FRONTEND=noninteractive sudo apt-get remove -y --purge "$RESTY_ADD_PACKAGE_BUILDDEPS"
     fi
 
     # Copy from https://github.com/openresty/docker-openresty/blob/master/focal/Dockerfile#L164
